@@ -21,10 +21,13 @@ public class DBCheck {
                 InputStream script1 = new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/createDB.sql"));
                 InputStream script2 = new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/initDB.sql")))
             {
+                Thread.sleep(10000);
                 ij.runScript(conn, script1,"UTF-8",System.out,"UTF-8");
                 ij.runScript(conn, script2,"UTF-8",System.out,"UTF-8");
 
                 System.out.println("New DB created successfully");
+            } catch (InterruptedException ex) {
+                System.out.println(ex.getMessage());
             }
         }
     }
