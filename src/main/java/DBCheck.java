@@ -18,10 +18,8 @@ public class DBCheck {
         } catch (SQLException e) {
             System.out.println("Could not access DB. Attempting to create one...");
             try(Connection conn = DriverManager.getConnection(dbCreateURL, user, password);
-                InputStream script1 =
-                        new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/createDB.sql"));
-                InputStream script2 =
-                        new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/initDB.sql")))
+                InputStream script1 = new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/createDB.sql"));
+                InputStream script2 = new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/initDB.sql")))
             {
                 ij.runScript(conn, script1,"UTF-8",System.out,"UTF-8");
                 ij.runScript(conn, script2,"UTF-8",System.out,"UTF-8");
