@@ -17,8 +17,6 @@ public class DBCheck {
             System.out.println("Success");
         } catch (SQLException e) {
             System.out.println("Could not access DB. Attempting to create one...");
-            Connection createSchema = DriverManager.getConnection(dbCreateURL, user, password);
-            createSchema.close();
             try(Connection conn = DriverManager.getConnection(dbURL, user, password);
                 InputStream script1 = new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/createDB.sql"));
                 InputStream script2 = new FileInputStream(new File("/var/lib/jenkins/workspace/isdp/src/main/resources/initDB.sql")))
